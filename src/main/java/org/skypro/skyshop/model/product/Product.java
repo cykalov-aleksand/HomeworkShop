@@ -10,12 +10,12 @@ public abstract class Product implements Searchable {
     private String nameProduct;
     private final UUID id;
 
-    public Product(String nameProduct,UUID id) throws IllegalArgumentException {
+    public Product(UUID id, String nameProduct) throws IllegalArgumentException {
         if (nameProduct.isBlank()) {
             throw new IllegalArgumentException("Ошибка - не введено название продукта в продуктовом массиве магазина");
         }
         this.nameProduct = nameProduct.trim();
-        this.id=id;
+        this.id = id;
     }
 
     @Override
@@ -32,17 +32,19 @@ public abstract class Product implements Searchable {
     public boolean isSpecial() {
         return false;
     }
+
     @JsonIgnore
     @Override
     public String getSearchTemp() {
         return nameProduct;
     }
-   @JsonIgnore
+
+    @JsonIgnore
     @Override
     public String getContentType() {
         return "PRODUCT";
     }
-
+    @JsonIgnore
     public String sortingElement() {
         return nameProduct;
     }

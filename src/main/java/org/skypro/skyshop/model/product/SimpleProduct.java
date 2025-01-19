@@ -5,8 +5,8 @@ import java.util.UUID;
 public class SimpleProduct extends Product {
     private int price;
 
-    public SimpleProduct(String nameProduct, int price, UUID id) throws IllegalArgumentException {
-        super(nameProduct,id);
+    public SimpleProduct(UUID id, String nameProduct, int price) throws IllegalArgumentException {
+        super(id, nameProduct);
         if (price <= 0) {
             throw new IllegalArgumentException("ОШИБКА В ЦЕНЕ ТОВАРА  " + super.getNameProduct());
         }

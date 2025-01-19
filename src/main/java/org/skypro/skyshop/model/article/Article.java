@@ -3,7 +3,6 @@ package org.skypro.skyshop.model.article;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.skypro.skyshop.model.search.Searchable;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public class Article implements Searchable {
@@ -11,19 +10,19 @@ public class Article implements Searchable {
     private String textAtribute;
     private final UUID id;
 
-    public Article(String titleAtribute, String textAtribute,UUID id) {
+    public Article(UUID id, String titleAtribute, String textAtribute) {
         this.titleAtribute = titleAtribute.trim();
         this.textAtribute = textAtribute;
-        this.id=id;
-    }
-
-    public String sortingElement() {
-        return titleAtribute;
+        this.id = id;
     }
 
     @Override
     public UUID getId() {
-        return this.id;
+        return id;
+    }
+    @JsonIgnore
+    public String sortingElement() {
+        return titleAtribute;
     }
 
     @Override
@@ -36,23 +35,11 @@ public class Article implements Searchable {
     public String getSearchTemp() {
         return (String.format("%27s\n%35s", titleAtribute, textAtribute));
     }
+
     @JsonIgnore
     @Override
     public String getContentType() {
         return "ARTICLE";
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        Article article = (Article) object;
-        return Objects.equals(titleAtribute, article.titleAtribute);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(titleAtribute);
     }
 }
 
