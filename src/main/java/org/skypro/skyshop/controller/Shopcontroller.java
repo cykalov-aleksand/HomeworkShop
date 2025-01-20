@@ -9,17 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 
-
-import static org.skypro.skyshop.SkyshopApplication.test;
-
-
 @RestController
 public class Shopcontroller {
 
     private final StorageService storageService;
 
-    public Shopcontroller(StorageService storageService) {
-        this.storageService = new StorageService(test());
+   public Shopcontroller(StorageService storageService) {
+        this.storageService = storageService;
     }
 
     @GetMapping("/products")

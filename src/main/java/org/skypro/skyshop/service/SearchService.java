@@ -5,23 +5,21 @@ import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class SearchService {
-    private final Set<Searchable> searchService;
+    private final Map<UUID, Searchable> searchService;
 
-    public SearchService(Set<Searchable> storageService) {
+    public SearchService(Map<UUID, Searchable> storageService) {
         this.searchService = storageService;
     }
 
     public List<SearchResult> search(String query) {
-        List<Searchable> collect = searchService.stream().filter(Objects::nonNull).filter(o -> o.sortingElement().equalsIgnoreCase(query.trim()))
-                .toList();
-        List<SearchResult> variant = new ArrayList<>();
-        for (Searchable variable : collect) {
-            variant.add(SearchResult.fromSearchable(variable));
-        }
+        Map<UUID, Searchable> collect = searchService.values().stream().filter(Objects::nonNull)
+                .filter(product -> product.sortingElement().equalsIgnoreCase(query.trim())).collect(Collectors.toMap(Searchable::getId, product -> product));
+        ArrayList<SearchResult> variant;
+        variant = (ArrayList<SearchResult>) collect.values().stream().map(SearchResult::fromSearchable).collect(Collectors.toList());
         return variant;
     }
 }
-
