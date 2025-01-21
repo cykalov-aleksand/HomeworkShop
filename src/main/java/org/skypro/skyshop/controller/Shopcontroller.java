@@ -32,7 +32,7 @@ public class Shopcontroller {
 
     @GetMapping("/search")
     public String search(@RequestParam("pattern") String pattern) {
-        Optional<StorageService> safeNull = Optional.ofNullable(null);
+        Optional<StorageService> safeNull = Optional.ofNullable(storageService);
         Optional<String> optional;
         optional = safeNull.map(productArtycle -> new SearchService(productArtycle.entireCollection()).search(pattern)
                 .toString()).orElse("Тестовые значения в StorageService не введены").describeConstable();
