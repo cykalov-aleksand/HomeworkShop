@@ -19,9 +19,9 @@ public class StorageService {
     private final Map<UUID, Article> storageArticle;
 
     public StorageService(Map<UUID, Product> storageProduct, Map<UUID, Article> storageArticle) {
-        this.storageProduct = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("PRODUCT")).collect(Collectors.toMap(Searchable::getId, product -> (Product) product)));
-        this.storageArticle = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("ARTICLE")).collect(Collectors.toMap(Searchable::getId, product -> (Article) product)));
-    }
+      this.storageProduct = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("PRODUCT")).collect(Collectors.toMap(Searchable::getId, product -> (Product) product)));
+      this.storageArticle = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("ARTICLE")).collect(Collectors.toMap(Searchable::getId, product -> (Article) product)));
+           }
 
     public Collection<Product> getAllProducts() {
 
@@ -32,11 +32,11 @@ public class StorageService {
         return storageArticle.values();
     }
 
-    public SearchService entireCollection() {
+    public Map<UUID,Searchable> entireCollection() {
         Map<UUID, Searchable> entire = new HashMap<>(storageProduct);
         entire.putAll(storageArticle);
-        return new SearchService(entire);
-    }
+        return entire;
+       }
 
     private static Map<UUID, Searchable> test() {
         Product[] products = {
