@@ -19,9 +19,9 @@ public class StorageService {
     private final Map<UUID, Article> storageArticle;
 
     public StorageService(Map<UUID, Product> storageProduct, Map<UUID, Article> storageArticle) {
-      this.storageProduct = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("PRODUCT")).collect(Collectors.toMap(Searchable::getId, product -> (Product) product)));
-      this.storageArticle = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("ARTICLE")).collect(Collectors.toMap(Searchable::getId, product -> (Article) product)));
-           }
+        this.storageProduct = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("PRODUCT")).collect(Collectors.toMap(Searchable::getId, product -> (Product) product)));
+        this.storageArticle = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("ARTICLE")).collect(Collectors.toMap(Searchable::getId, product -> (Article) product)));
+    }
 
     public Collection<Product> getAllProducts() {
 
@@ -32,11 +32,20 @@ public class StorageService {
         return storageArticle.values();
     }
 
-    public Map<UUID,Searchable> entireCollection() {
+    public Map<UUID, Searchable> entireCollection() {
         Map<UUID, Searchable> entire = new HashMap<>(storageProduct);
         entire.putAll(storageArticle);
         return entire;
-       }
+    }
+
+    public Map<UUID, Product> availableProducts(UUID id) {
+        return storageProduct.keySet().stream().filter(Objects::nonNull).filter(o -> o.equals(id)).collect(Collectors.toMap(o -> o, storageProduct::get));
+
+    }
+
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(availableProducts(id).get(id));
+    }
 
     private static Map<UUID, Searchable> test() {
         Product[] products = {
@@ -85,9 +94,9 @@ public class StorageService {
                 new Article(UUID.randomUUID(), "Стиральный порошок", "Стиральный порошок Tide"),
                 new Article(UUID.randomUUID(), "Пена для бритья", "Пена для бритья Tide")
         };
-        Map<UUID, Searchable> testArray = new HashMap<>();
-        testArray = stream(articles).collect(Collectors.toMap(Searchable::getId, product -> (Article) product));
-        testArray.putAll(stream(products).collect(Collectors.toMap(Searchable::getId, product -> (Product) product)));
+        Map<UUID, Searchable> testArray;
+        testArray = stream(articles).collect(Collectors.toMap(Searchable::getId, product -> product));
+        testArray.putAll(stream(products).collect(Collectors.toMap(Searchable::getId, product -> product)));
         return testArray;
     }
 }
