@@ -20,6 +20,7 @@ public class Article implements Searchable {
     public UUID getId() {
         return id;
     }
+
     @JsonIgnore
     public String sortingElement() {
         return titleAtribute;

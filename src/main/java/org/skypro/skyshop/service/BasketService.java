@@ -33,5 +33,5 @@ public class BasketService {
             basketItems.add(new BasketItem(prod.get(), productBasket.getProductBasket().get(variable)));
         }
         return new UserBasket(basketItems);
-            }
+    }
 }

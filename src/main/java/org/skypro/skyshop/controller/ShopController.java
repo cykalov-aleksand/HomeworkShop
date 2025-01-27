@@ -18,14 +18,15 @@ import java.util.UUID;
 import static java.util.Optional.*;
 
 @RestController
-public class Shopcontroller {
+public class ShopController {
 
     private final StorageService storageService;
     private final BasketService basketService;
-    public Shopcontroller(StorageService storageService,BasketService basketService) {
+
+    public ShopController(StorageService storageService, BasketService basketService) {
         this.storageService = storageService;
         this.basketService = basketService;
-           }
+    }
 
     @GetMapping("/products")
     public Collection<Product> getAllProducts() {
@@ -36,15 +37,18 @@ public class Shopcontroller {
     public Collection<Article> getAllArticle() {
         return storageService.getAllArticle();
     }
-   @GetMapping("/basket/{id}")
-   public String addProduct(@PathVariable("id") UUID id){
-basketService.addProductBasketId(id);
-     return "Продукт добавлен";
+
+    @GetMapping("/basket/{id}")
+    public String addProduct(@PathVariable("id") UUID id) {
+        basketService.addProductBasketId(id);
+        return "Продукт добавлен";
     }
-     @GetMapping("/basket")
-   public UserBasket getUserBasket(){
-      return basketService.getUserBasket();
+
+    @GetMapping("/basket")
+    public UserBasket getUserBasket() {
+        return basketService.getUserBasket();
     }
+
     @GetMapping("/search")
     public String search(@RequestParam("pattern") String pattern) {
         Optional<StorageService> safeNull = ofNullable(storageService);
