@@ -22,7 +22,7 @@ public class BasketService {
         if (storageService.getProductById(id).isPresent()) {
             productBasket.addProductBasket(id);
         } else {
-            storageService.getProductById(id).orElseThrow(() -> new IllegalArgumentException("Продукта с указанным ID в магазине нет"));
+            storageService.getProductById(id).orElseThrow(NoSuchProductException::new);
         }
     }
 
