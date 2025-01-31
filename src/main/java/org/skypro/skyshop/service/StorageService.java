@@ -1,5 +1,6 @@
 package org.skypro.skyshop.service;
 
+import org.skypro.skyshop.exeption.NoSuchProductException;
 import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.DiscountedProduct;
 import org.skypro.skyshop.model.product.FixPriceProduct;
@@ -19,8 +20,10 @@ public class StorageService {
     private final Map<UUID, Article> storageArticle;
 
     public StorageService(Map<UUID, Product> storageProduct, Map<UUID, Article> storageArticle) {
-        this.storageProduct = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("PRODUCT")).collect(Collectors.toMap(Searchable::getId, product -> (Product) product)));
-        this.storageArticle = new HashMap<>(test().values().stream().filter(product -> product.getContentType().equals("ARTICLE")).collect(Collectors.toMap(Searchable::getId, product -> (Article) product)));
+        this.storageProduct = new HashMap<>(test().values().stream().filter(product -> product.getContentType()
+                .equals("PRODUCT")).collect(Collectors.toMap(Searchable::getId, product -> (Product) product)));
+        this.storageArticle = new HashMap<>(test().values().stream().filter(product -> product.getContentType()
+                .equals("ARTICLE")).collect(Collectors.toMap(Searchable::getId, product -> (Article) product)));
     }
 
     public Collection<Product> getAllProducts() {
@@ -39,12 +42,14 @@ public class StorageService {
     }
 
     public Map<UUID, Product> availableProducts(UUID id) {
-        return storageProduct.keySet().stream().filter(Objects::nonNull).filter(o -> o.equals(id)).collect(Collectors.toMap(o -> o, storageProduct::get));
+        return storageProduct.keySet().stream().filter(Objects::nonNull)
+                .filter(o -> o.equals(id)).collect(Collectors.toMap(o -> o, storageProduct::get));
 
     }
 
     public Optional<Product> getProductById(UUID id) {
-        return Optional.ofNullable(availableProducts(id).get(id));
+        Product product = Optional.ofNullable(availableProducts(id).get(id)).orElseThrow(NoSuchProductException::new);
+        return Optional.ofNullable(product);
     }
 
     private static Map<UUID, Searchable> test() {
