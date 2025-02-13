@@ -25,10 +25,4 @@ public class SearchService {
         return variant;
     }
 
-    @Override
-    public String toString() {
-        return "SearchService{" +
-                "searchService=" + searchService +
-                '}';
-    }
 }
