@@ -15,6 +15,10 @@ public class SearchService {
         this.searchService = storageService;
     }
 
+    public Map<UUID, Searchable> getSearchService() {
+        return searchService;
+    }
+
     public List<SearchResult> search(String query) {
         Map<UUID, Searchable> collect = searchService.values().stream().filter(Objects::nonNull)
                 .filter(product -> product.sortingElement().equalsIgnoreCase(query.trim()))

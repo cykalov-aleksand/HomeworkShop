@@ -11,8 +11,10 @@ public class ProductBasket {
     private final Map<UUID, Integer> productBasket = new HashMap<>();
 
     public void addProductBasket(UUID id) {
+        // System.out.println("ОШИБКА");
         productBasket.computeIfAbsent(id, k -> 0);
         productBasket.put(id, productBasket.get(id) + 1);
+
     }
 
     public Map<UUID, Integer> getProductBasket() {
