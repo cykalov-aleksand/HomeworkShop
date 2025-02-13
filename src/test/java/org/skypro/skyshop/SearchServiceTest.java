@@ -61,5 +61,4 @@ public class SearchServiceTest {
         List<SearchResult> results = searchService.search("Test");
         assertEquals(productEtalon.toString(), results.toString());
     }
-
 }
