@@ -15,10 +15,6 @@ public class SearchService {
         this.searchService = storageService;
     }
 
-    public Map<UUID, Searchable> getSearchService() {
-        return searchService;
-    }
-
     public List<SearchResult> search(String query) {
         Map<UUID, Searchable> collect = searchService.values().stream().filter(Objects::nonNull)
                 .filter(product -> product.sortingElement().equalsIgnoreCase(query.trim()))
@@ -27,5 +23,12 @@ public class SearchService {
         variant = (ArrayList<SearchResult>) collect.values().stream()
                 .map(SearchResult::fromSearchable).collect(Collectors.toList());
         return variant;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchService{" +
+                "searchService=" + searchService +
+                '}';
     }
 }

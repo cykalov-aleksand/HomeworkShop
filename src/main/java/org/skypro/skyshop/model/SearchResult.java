@@ -15,18 +15,6 @@ public class SearchResult {
         this.contentType = contentType;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getNameProduct() {
-        return nameProduct;
-    }
-
-    public String getContentType() {
-        return contentType;
-    }
-
     static public SearchResult fromSearchable(Searchable object) {
         UUID id = object.getId();
         String nameProduct = object.getSearchTemp();

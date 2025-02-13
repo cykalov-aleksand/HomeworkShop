@@ -8,6 +8,7 @@ import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
 import org.skypro.skyshop.model.search.Searchable;
 import org.springframework.stereotype.Service;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,7 @@ public class StorageService {
                 .equals("ARTICLE")).collect(Collectors.toMap(Searchable::getId, product -> (Article) product)));
     }
 
-       public Collection<Product> getAllProducts() {
+    public Collection<Product> getAllProducts() {
 
         return storageProduct.values();
     }
@@ -47,7 +48,6 @@ public class StorageService {
     }
 
     public Optional<Product> getProductById(UUID id) {
-        // System.out.println("ОШИБКА");
         Product product = Optional.ofNullable(availableProducts(id).get(id)).orElseThrow(NoSuchProductException::new);
         return Optional.ofNullable(product);
     }
