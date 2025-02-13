@@ -27,11 +27,11 @@ public class SearchServiceTest {
 
     @Test
     void searchIfThereAreNoObjectsIn_StorageServis_AnEmpty() {
-        List<SearchResult> productEtalon = List.of();
         Map<UUID, Product> product = new HashMap<>();
         Map<UUID, Searchable> entireCollectionProduct = new HashMap<>(product);
         when(storageService.entireCollection()).thenReturn(entireCollectionProduct);
         searchService = new SearchService(storageService.entireCollection());
+        List<SearchResult> productEtalon = List.of();
         List<SearchResult> results = searchService.search("Test");
         assertEquals(productEtalon.toString(), results.toString());
     }
