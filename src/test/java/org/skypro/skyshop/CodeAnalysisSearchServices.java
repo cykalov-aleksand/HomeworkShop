@@ -9,7 +9,7 @@ import static java.util.Optional.ofNullable;
 
 public class CodeAnalysisSearchServices {
     String nameProduct;
-    Map<UUID, Searchable> listProduct;
+    Map<UUID, Searchable>  listProduct;
 
     public CodeAnalysisSearchServices(String nameProduct, Map<UUID, Searchable> listProduct) {
         this.nameProduct = nameProduct;

@@ -25,7 +25,7 @@ public class SearchServiceTest {
     void searchIfThereAreObjectsButThereIsNoSuitableOneIn_StorageService() {
         System.out.println("Поиск в случае, если объекты в StorageService есть, но нет подходящего:\n");
         CodeAnalysisSearchServices test = new CodeAnalysisSearchServices("Мыло", test());
-        System.out.println(test.test());
+         System.out.println(test.test());
     }
 
     @Test
