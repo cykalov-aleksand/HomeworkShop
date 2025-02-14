@@ -25,6 +25,6 @@ public class SearchResult {
 
     @Override
     public String toString() {
-        return String.format("%6s%20s%15s%25s%15s%15s%2s","id=",id.toString()," nameProduct=",nameProduct,"contentType='",contentType,"\n");
+        return String.format("%6s%21s%15s%25s%15s%15s%2s","id=",id.toString()," nameProduct=",nameProduct,"contentType='",contentType,"\n");
     }
 }
