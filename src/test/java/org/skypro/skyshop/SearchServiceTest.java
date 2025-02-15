@@ -22,13 +22,14 @@ public class SearchServiceTest {
 
     @Test
     void searchIfThereAreObjectsButThereIsNoSuitableOneIn_StorageService() {
-       assertEquals("[]", new SearchService(test()).search("Мыло").toString());
+        String stringCheck = "Мыло";
+       assertEquals("[]", new SearchService(test()).search(stringCheck).toString());
     }
 
     @Test
     void searchWhenThereIsSuitableObjectIn_StorageService() {
         String stringCheck = "Пельмени";
-       assertTrue(new SearchService(test()).search("Пельмени").toString().contains(stringCheck));
+       assertTrue(new SearchService(test()).search(stringCheck).toString().contains(stringCheck));
     }
 
     private Map<UUID, Searchable> test() {
