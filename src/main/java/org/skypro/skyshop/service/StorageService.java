@@ -52,6 +52,7 @@ public class StorageService {
         return Optional.ofNullable(product);
     }
 
+
     private static Map<UUID, Searchable> test() {
         Product[] products = {
                 new SimpleProduct(UUID.randomUUID(), "Конфеты", 800),

@@ -8,11 +8,9 @@ import org.skypro.skyshop.service.SearchService;
 import org.skypro.skyshop.service.StorageService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
-
 import static java.util.Optional.*;
 
 @RestController
