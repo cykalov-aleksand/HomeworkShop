@@ -22,7 +22,6 @@ public class SearchServiceTest {
         CodeAnalysisSearchServices test = new CodeAnalysisSearchServices("Макароны", null);
         stringStates=test.test();
         System.out.println(stringStates);
-       // boolean equals = stringStates.equals("Тестовые значения в StorageService не введены");
         assertEquals("Тестовые значения в StorageService не введены",stringStates);
 
     }
