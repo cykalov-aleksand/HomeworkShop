@@ -17,21 +17,18 @@ public class SearchServiceTest {
 
     @Test
     void searchIfThereAreNoObjectsIn_StorageServis_AnEmpty() {
-        System.out.println("Поиск в случае отсутствия объектов в StorageService.\n");
         assertThrows(NullPointerException.class, () -> new SearchService(null).search("Мыло"));
     }
 
     @Test
     void searchIfThereAreObjectsButThereIsNoSuitableOneIn_StorageService() {
-        System.out.println("Поиск в случае, если объекты в StorageService есть, но нет подходящего.\n");
-        assertEquals("[]", new SearchService(test()).search("Мыло").toString());
+       assertEquals("[]", new SearchService(test()).search("Мыло").toString());
     }
 
     @Test
     void searchWhenThereIsSuitableObjectIn_StorageService() {
         String stringCheck = "Пельмени";
-        System.out.println("Поиск, когда есть подходящий объект в StorageService.\n");
-        assertTrue(new SearchService(test()).search("Пельмени").toString().contains(stringCheck));
+       assertTrue(new SearchService(test()).search("Пельмени").toString().contains(stringCheck));
     }
 
     private Map<UUID, Searchable> test() {
