@@ -19,7 +19,6 @@ public class SearchServiceTest {
     void searchIfThereAreNoObjectsIn_StorageServis_AnEmpty() {
         System.out.println("Поиск в случае отсутствия объектов в StorageService.\n");
         assertThrows(NullPointerException.class, () -> new SearchService(null).search("Мыло"));
-
     }
 
     @Test
