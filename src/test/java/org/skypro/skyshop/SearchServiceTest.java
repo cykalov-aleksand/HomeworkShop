@@ -17,7 +17,8 @@ public class SearchServiceTest {
 
     @Test
     void searchIfThereAreNoObjectsIn_StorageServis_AnEmpty() {
-        assertThrows(NullPointerException.class, () -> new SearchService(null).search("Мыло"));
+        String stringCheck = "Мыло";
+        assertThrows(NullPointerException.class, () -> new SearchService(null).search(stringCheck));
     }
 
     @Test
