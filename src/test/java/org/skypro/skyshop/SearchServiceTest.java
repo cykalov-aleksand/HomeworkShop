@@ -1,8 +1,6 @@
 package org.skypro.skyshop;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
@@ -15,7 +13,6 @@ import static java.util.Arrays.stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(MockitoExtension.class)
 public class SearchServiceTest {
 
     @Test
