@@ -24,5 +24,4 @@ public class SearchService {
                 .map(SearchResult::fromSearchable).collect(Collectors.toList());
                return variant;
     }
-
 }
